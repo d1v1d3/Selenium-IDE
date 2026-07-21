@@ -12,11 +12,16 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/d1v1d3/Selenium-IDE.git'
             }
         }
-        // stage('.NET Core Setup') {
-        //     steps {
-        //         bat 'choco install dotnet-sdk -y --version=6.0.100' 
-        //     }
-        // }
+        stage('Install chocolatey') {
+            steps {
+                powershell 'Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))'
+            }
+        }
+        stage('.NET Core Setup') {
+            steps {
+                bat 'choco install dotnet-sdk -y --version=6.0.100' 
+            }
+        }
         stage('Uninstall Chrome') {
             steps {
                 bat 'choco uninstall googlechrome -y' 
