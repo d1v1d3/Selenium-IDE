@@ -7,11 +7,11 @@ pipeline {
         CHROMEDRIVER_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe'
     }
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/d1v1d3/Selenium-IDE.git'
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         git branch: 'main', url: 'https://github.com/d1v1d3/Selenium-IDE.git'
+        //     }
+        // }
         stage('.NET Core Setup') {
             steps {
                 bat 'choco install dotnet-sdk -y --version=6.0.100' 
