@@ -51,12 +51,13 @@ pipeline {
             steps {
                 bat 'dotnet test --no-build --no-restore'
             }
-        }
-        post{
+            post{
             always{
                 archiveArtifacts artifacts: '**/TestResults/*.trx', allowEmptyArchive: true
                 junit '**/TestResults/*.trx'
             }
         }
+        }
+        
     }
 }
