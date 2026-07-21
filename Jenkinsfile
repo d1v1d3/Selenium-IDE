@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/d1v1d3/Selenium-IDE'
+                git branch: 'main', url: 'https://github.com/d1v1d3/Selenium-IDE.git'
             }
         }
         stage('.NET Core Setup') {
@@ -52,11 +52,11 @@ pipeline {
                 bat 'dotnet test --no-build --no-restore'
             }
             post{
-            always{
-                archiveArtifacts artifacts: '**/TestResults/*.trx', allowEmptyArchive: true
-                junit '**/TestResults/*.trx'
+                always{
+                    archiveArtifacts artifacts: '**/TestResults/*.trx', allowEmptyArchive: true
+                    junit '**/TestResults/*.trx'
+                }
             }
-        }
         }
         
     }
